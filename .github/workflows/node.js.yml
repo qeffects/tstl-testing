@@ -19,7 +19,7 @@ jobs:
         node-version: 16.x
         cache: 'npm'
     - name: Npm Install && Build with Testing preset
-      run: npm install && npm run-script build
+      run: npm install && npm run-script test-build
     - name: Install Lua
       uses: leafo/gh-actions-lua@v8
       with:
@@ -29,4 +29,4 @@ jobs:
     - name: Install Busted
       run: luarocks install busted
     - name: Running Tests
-      run: cd dist && busted
+      run: cd testing && busted

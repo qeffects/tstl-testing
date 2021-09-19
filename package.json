@@ -1,11 +1,11 @@
 {
-  "name": "lua-object-pool",
+  "name": "tstl-testing",
   "version": "1.0.4",
-  "description": "Lua object pool",
+  "description": "A testing showcase",
   "main": "index.lua",
   "scripts": {
     "build": "tstl",
-    "git-publish": "tstl",
+    "test-build": "tstl --project tsconfig.test.json",
     "dev": "tstl --watch"
   },
   "files": [
