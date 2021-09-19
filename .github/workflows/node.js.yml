@@ -1,0 +1,32 @@
+name: TSTL Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_tests:
+    name: Busted Tests
+    runs-on: ubuntu-latest
+      
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js [16.x]
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16.x
+        cache: 'npm'
+    - name: Npm Install && Build with Testing preset
+      run: npm install && npm run-script build
+    - name: Install Lua
+      uses: leafo/gh-actions-lua@v8
+      with:
+        luaVersion: "luajit-2.1.0-beta3"
+    - name: Install LuaRocks
+      uses: leafo/gh-actions-luarocks@v4.0.0
+    - name: Install Busted
+      run: luarocks install busted
+    - name: Running Tests
+      run: cd dist && busted
